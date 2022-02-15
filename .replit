@@ -1,2 +1,19 @@
+
+run = [
+    "poetry install"
+]
+
+entrypoint = "main.py"
+
 language = "python3"
-run = ""
+
+[packager]
+language = "python-python3-poetry"
+afterInstall = ""
+
+[packager.features]
+packageSearch = true
+guessImports = false
+
+audio = false
+
