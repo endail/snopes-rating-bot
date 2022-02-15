@@ -1,0 +1,3 @@
+htmldom==2.0
+replit==3.2.4
+tweepy==4.5.0

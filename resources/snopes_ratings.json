@@ -1,0 +1,147 @@
+[
+
+  {
+    "name": "true",
+    "display": "True",
+    "description": "This rating indicates that the primary elements of a claim are demonstrably true.",
+    "short_description": "This rating indicates that the primary elements of a claim are demonstrably true.",
+    "img": "https://www.snopes.com/tachyon/2018/03/rating-true.png",
+    "url": "https://www.snopes.com/fact-check/rating/true/"
+  },
+
+  {
+    "name": "mostly true",
+    "display": "Mostly True",
+    "description": "This rating indicates that the primary elements of a claim are demonstrably true, but some of the ancillary details surrounding the claim may be inaccurate.",
+    "short_description": "This rating indicates that the primary elements of a claim are demonstrably true, but some of the ancillary details surrounding the claim may be inaccurate.",
+    "img": "https://www.snopes.com/tachyon/2018/03/rating-mostly-true-new.png",
+    "url": "https://www.snopes.com/fact-check/rating/mostly-true/"
+  },
+
+  {
+    "name": "mixture",
+    "display": "Mixture",
+    "description": "This rating indicates that a claim has significant elements of both truth and falsity to it such that it could not fairly be described by any other rating.",
+    "short_description": "This rating indicates that a claim has significant elements of both truth and falsity to it such that it could not fairly be described by any other rating.",
+    "img": "https://www.snopes.com/tachyon/2018/03/rating-mixture.png",
+    "url": "https://www.snopes.com/fact-check/rating/mixture/"
+  },
+
+  {
+    "name": "mostly false",
+    "display": "Mostly False",
+    "description": "This rating indicates that the primary elements of a claim are demonstrably false, but some of the ancillary details surrounding the claim may be accurate.",
+    "short_description": "This rating indicates that the primary elements of a claim are demonstrably false, but some of the ancillary details surrounding the claim may be accurate.",
+    "img": "https://www.snopes.com/tachyon/2018/03/rating-mostly-false.png",
+    "url": "https://www.snopes.com/fact-check/rating/mostly-false/"
+  },
+
+  {
+    "name": "false",
+    "display": "False",
+    "description": "This rating indicates that the primary elements of a claim are demonstrably false.",
+    "short_description": "This rating indicates that the primary elements of a claim are demonstrably false.",
+    "img": "https://www.snopes.com/tachyon/2018/03/rating-false.png",
+    "url": "https://www.snopes.com/fact-check/rating/false/"
+  },
+
+  {
+    "name": "unproven",
+    "display": "Unproven",
+    "description": "This rating indicates that insufficient evidence exists to establish the given claim as true, but the claim cannot be definitively proved false. This rating typically involves claims for which there is little or no affirmative evidence, but for which declaring them to be false would require the difficult (if not impossible) task of our being able to prove a negative or accurately discern someone else’s thoughts and motivations.",
+    "short_description": "This rating indicates that insufficient evidence exists to establish the given claim as true, but the claim cannot be definitively proved false.",
+    "img": "https://www.snopes.com/tachyon/2018/03/rating-unproven.png",
+    "url": "https://www.snopes.com/fact-check/rating/unproven/"
+  },
+
+  {
+    "name": "outdated",
+    "display": "Outdated",
+    "description": "This rating applies to items for which subsequent events have rendered their original truth rating irrelevant (e.g., a condition that was the subject of protest has been rectified, or the passage of a controversial law has since been repealed).",
+    "short_description": "This rating applies to items for which subsequent events have rendered their original truth rating irrelevant",
+    "img": "https://www.snopes.com/tachyon/2018/03/rating-outdated.png",
+    "url": "https://www.snopes.com/fact-check/rating/outdated/"
+  },
+
+  {
+    "name": "miscaptioned",
+    "display": "Miscaptioned",
+    "description": "This rating is used with photographs and videos that are “real” (i.e., not the product, partially or wholly, of digital manipulation) but are nonetheless misleading because they are accompanied by explanatory material that falsely describes their origin, context, and/or meaning.",
+    "short_description": "This rating is used with photographs and videos that are “real” but are nonetheless misleading because they are accompanied by explanatory material that falsely describes their origin, context, and/or meaning.",
+    "img": "https://www.snopes.com/tachyon/2018/03/rating-miscaptioned.png",
+    "url": "https://www.snopes.com/fact-check/rating/miscaptioned/"
+  },
+
+  {
+    "name": "correct attribution",
+    "display": "Correct Attribution",
+    "description": "This rating indicates that quoted material (speech or text) has been correctly attributed to the person who spoke or wrote it.",
+    "short_description": "This rating indicates that quoted material (speech or text) has been correctly attributed to the person who spoke or wrote it.",
+    "img": "https://www.snopes.com/tachyon/2018/03/rating-correctly-attributed.png",
+    "url": "https://www.snopes.com/fact-check/rating/correct-attribution/"
+  },
+
+  {
+    "name": "misattributed",
+    "display": "Misattributed",
+    "description": "This rating indicates that quoted material (speech or text) has been incorrectly attributed to a person who didn’t speak or write it.",
+    "short_description": "This rating indicates that quoted material (speech or text) has been incorrectly attributed to a person who didn’t speak or write it.",
+    "img": "https://www.snopes.com/tachyon/2018/03/rating-misattributed.png",
+    "url": "https://www.snopes.com/fact-check/rating/misattributed/"
+  },
+
+  {
+    "name": "scam",
+    "display": "Scam",
+    "description": "This “rating” is not a truth rating but rather indicates pages that describe the details of verified scams.",
+    "short_description": "This “rating” is not a truth rating but rather indicates pages that describe the details of verified scams.",
+    "img": "https://www.snopes.com/tachyon/2018/03/rating-scam.png",
+    "url": "https://www.snopes.com/fact-check/rating/scam/"
+  },
+
+  {
+    "name": "legend",
+    "display": "Legend",
+    "description": "This rating is most commonly associated with items that describe events so general or lacking in detail that they could have happened to someone, somewhere, at some time, and are therefore essentially unprovable.",
+    "short_description": "This rating is most commonly associated with items that describe events so general or lacking in detail that they could have happened to someone, somewhere, at some time, and are therefore essentially unprovable.",
+    "img": "https://www.snopes.com/tachyon/2018/03/rating-legend.png",
+    "url": "https://www.snopes.com/fact-check/rating/legend/"
+  },
+
+  {
+    "name": "labeled satire",
+    "display": "Labeled Satire",
+    "description": "This rating indicates that a claim is derived from content described by its creator and/or the wider audience as satire. Not all content described by its creator or audience as ‘satire’ necessarily constitutes satire, and this rating does not make a distinction between ‘real’ satire and content that may not be effectively recognized or understood as satire despite being labeled as such.",
+    "short_description": "This rating indicates that a claim is derived from content described by its creator and/or the wider audience as satire.",
+    "img": "https://www.snopes.com/tachyon/2019/08/snopes-rating-icon-satire_4x.png",
+    "url": "https://www.snopes.com/fact-check/rating/labeled-satire/"
+  },
+
+  {
+    "name": "originated as satire",
+    "display": "Originated as Satire",
+    "description": "This rating refers to content that originally came from a site described as satire, but was later stripped of some of its satirical markings, repackaged, and posted elsewhere. The rating also applies to content not necessarily labeled as satire but that audiences perceived as satirical nonetheless, such as content from The Onion.",
+    "short_description": "This rating refers to content that originally came from a site described as satire, but was later stripped of some of its satirical markings, repackaged, and posted elsewhere.",
+    "img": "https://www.snopes.com/tachyon/2019/08/snopes-rating-icon-satire_4x.png",
+    "url": "https://www.snopes.com/fact-check/rating/originated-as-satire/"
+  },
+
+  {
+    "name": "recall",
+    "display": "Recall",
+    "description": "This rating is applied to genuine product recall notices.",
+    "short_description": "This rating is applied to genuine product recall notices.",
+    "img": "https://www.snopes.com/tachyon/2021/04/snopes-rating-icon-recall.png",
+    "url": "https://www.snopes.com/fact-check/rating/recall/"
+  },
+
+  {
+    "name": "lost legend",
+    "display": "Lost Legend",
+    "description": "These legends aren’t really lost — we’ve known where they were the whole time! We created The Repository of Lost Legends (TRoLL for short) for those of you who don’t let the truth get in the way of a good story. If you have a taste for the unusual and arcane (and can suspend your disbelief just a little), sample some of these precious gems.",
+    "short_description": "We created The Repository of Lost Legends (TRoLL for short) for those of you who don’t let the truth get in the way of a good story. If you have a taste for the unusual and arcane (and can suspend your disbelief just a little), sample some of these precious gems.",
+    "img": "https://www.snopes.com/tachyon/2021/04/snopes-rating-icon-lost-legends.png",
+    "url": "https://www.snopes.com/fact-check/rating/lost-legend/"
+  }
+
+]
