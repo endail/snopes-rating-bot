@@ -3,7 +3,7 @@
 name = "snopes-rating-bot"
 version = "0.1.0"
 description = "snopes rating bot"
-authors = ["endail"]
+authors = [ "endail" ]
 
 [tool.poetry.dependencies]
 python = "3.10.2"
