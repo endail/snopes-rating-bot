@@ -1,4 +1,9 @@
 
+[tool.poetry]
+name = "snopes-rating-bot"
+version = "0.1.0"
+description = "snopes rating bot"
+
 [tool.poetry.dependencies]
 python = "3.10.2"
 htmldom = "2.0"
