@@ -7,6 +7,7 @@ authors = [ "endail" ]
 
 [tool.poetry.dependencies]
 python = "3.10.2"
+Flask = "2.0.3"
 htmldom = "2.0"
 replit = "3.2.4"
 tweepy = "4.5.0"

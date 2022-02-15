@@ -4,6 +4,7 @@ import time
 from src.store import store
 from src.snopes import snopes
 from src.twitter import twitter
+from keep_alive import keep_alive
 
 def post_reply(client: tweepy.Client, snInfo: dict, snTweet: dict) -> None:
 
@@ -44,6 +45,9 @@ if __name__ == "__main__":
   if os.getenv("APP_ENABLED", "False") != "True":
     print("App not enabled; exiting")
     exit()
+
+  # run web server to keep task running
+  keep_alive()
 
   print("Getting details from database")
   mostRecentId = store.get_last_twitter_id()
