@@ -3,8 +3,8 @@ from src.store import store
 if __name__ == "__main__":
 
   defaultToken = {
-    "access_token": "",
-    "refresh_token": "",
+    "access_token": "abc",
+    "refresh_token": "def",
     "expires_at": 0
   }
 
