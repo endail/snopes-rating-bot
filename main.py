@@ -40,7 +40,8 @@ def post_reply(client: tweepy.Client, snInfo: dict, snTweet: dict) -> None:
 
 if __name__ == "__main__":
 
-  if not bool(os.getenv("APP_ENABLED", False)):
+  # app run guard
+  if os.getenv("APP_ENABLED", "False") != "True":
     print("App not enabled; exiting")
     exit()
 
