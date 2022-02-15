@@ -1,7 +1,5 @@
 
-run = [
-    "poetry install"
-]
+run = "poetry install"
 
 entrypoint = "main.py"
 
