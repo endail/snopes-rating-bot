@@ -36,7 +36,7 @@
 
 ### APP_ENABLED
 
-> If False, app will exit immediately.
+> If 0, app will exit immediately. Set to 1 to enable.
 
 ### APP_SNOPES_RATING_FILE
 
