@@ -28,7 +28,7 @@ class snopes:
     return info
 
   @staticmethod
-  def get_rating_info(rating: str) -> dict | None:
+  def get_rating_info(rating: str) -> dict:
 
     file = os.getenv("APP_SNOPES_RATING_FILE", None)
 
