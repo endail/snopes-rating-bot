@@ -16,7 +16,7 @@ def post_reply(client: tweepy.Client, snInfo: dict, snTweet: dict) -> None:
     print(f"Unknown rating {snInfo['rating']}")
     return
 
-  reply = f"This claim is rated: {extInfo['display']}\n{time.time()}\n{snInfo['final_url']}"
+  reply = f"This claim is rated: {extInfo['display']}\n{snInfo['final_url']}"
   print(reply)
 
   try:
