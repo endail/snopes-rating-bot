@@ -1,9 +1,32 @@
 
+[project]
+name = "snopes-rating-bot"
+version = "0.1.0"
+description = "snopes rating bot"
+authors = [
+  "Daniel Robertson <52652357+endail@users.noreply.github.com>"
+]
+license = "MIT"
+python = "3.10.2"
+homepage = "https://github.com/endail/snopes-rating-bot"
+repository = "https://github.com/endail/snopes-rating-bot"
+documentation = "https://github.com/endail/snopes-rating-bot"
+keywords = [
+  "twitter",
+  "snopes",
+  "bot"
+]
+classifiers = [
+  "Topic :: Software Development"
+]
+
 [tool.poetry]
 name = "snopes-rating-bot"
 version = "0.1.0"
 description = "snopes rating bot"
-authors = [ "endail" ]
+authors = [
+  "Daniel Robertson <52652357+endail@users.noreply.github.com>"
+]
 
 [tool.poetry.dependencies]
 python = "3.10.2"
