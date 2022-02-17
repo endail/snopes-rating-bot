@@ -1,6 +1,8 @@
 import os
 import tweepy
 import time
+import logging
+import sys
 from src.store import store
 from src.snopes import snopes
 from src.twitter import twitter
@@ -45,6 +47,9 @@ if __name__ == "__main__":
   if os.getenv("APP_ENABLED", "False") != "True":
     print("App not enabled; exiting")
     exit()
+
+  # disable logging for replit __logs and __tail
+  logging.disable(sys.maxsize)
 
   # run web server to keep task running
   keep_alive()
