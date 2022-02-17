@@ -1,0 +1,16 @@
+{
+  "TWITTER_API_CLIENT_ID": "",
+  "TWITTER_API_CLIENT_SECRET": "",
+  "TWITTER_API_SCOPES": "tweet.read,tweet.write,users.read,offline.access",
+  "TWITTER_API_REDIRECT_URI": "https://localhost/",
+  "TWITTER_API_REFRESH_TOKEN_URI": "https://api.twitter.com/2/oauth2/token",
+  "TWITTER_API_TOKEN_TIMEOUT": "600",
+  "TWITTER_API_SNOPES_QUERY": "from:14294848 has:links -is:retweet -is:reply -is:quote",
+  "TWITTER_API_SNOPES_MAX_RESULTS": "10",
+  "APP_NAME": "app-name-here",
+  "APP_ENABLED": "False",
+  "APP_SNOPES_RATING_FILE": "./resources/snopes_ratings.json",
+  "APP_SNOPES_DETAIL_TIMEOUT": "10",
+  "APP_CHECK_TIMEOUT": "60",
+  "APP_TWEET_INTERVAL_TIMEOUT": "1"
+}
