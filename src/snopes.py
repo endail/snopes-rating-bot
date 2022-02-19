@@ -2,6 +2,7 @@ import json
 import os
 import urllib
 from htmldom import htmldom
+from urllib.error import URLError
 
 class snopes:
 
@@ -18,10 +19,16 @@ class snopes:
 
     try:
       with urllib.request.urlopen(url, timeout=tm) as resp:
+        
         info["final_url"] = resp.url
+
+        if not resp.url.startswith("https://www.snopes.com"):
+          raise URLError("url does not lead to snopes.com")
+
         page = htmldom.HtmlDom().createDom(resp.read().decode("utf-8"))
         info["claim"] = page.find("div.claim-text").first().text().strip()
         info["rating"] = page.find("div[data-component=claim-rating] span").first().text().strip().lower()
+
     except:
       pass
 
