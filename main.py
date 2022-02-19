@@ -25,7 +25,7 @@ def post_reply(client: tweepy.Client, snInfo: dict, snTweet: dict) -> None:
 
     resp = client.create_tweet(
       text=reply,
-      #in_reply_to_tweet_id=snTweet.id,
+      in_reply_to_tweet_id=snTweet.id,
       reply_settings="following",
       user_auth=False)
 
