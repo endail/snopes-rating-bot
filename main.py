@@ -94,9 +94,14 @@ if __name__ == "__main__":
       arts = filter_articles(arts)
       print(f"Filtered down to {len(arts)} articles")
 
+      # tweet in reverse order so most recent article is tweeted last
       for art in reversed(arts):
         post_tweet(art)
         time.sleep(int(os.getenv("APP_TWEET_INTERVAL_TIMEOUT"), 0))
+
+      # store most recent url
+      if len(arts) > 0:
+        store.get_last_snopes_url(arts[0].url)
 
     except Exception as ex:
       print(repr(ex))
