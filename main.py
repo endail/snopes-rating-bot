@@ -6,7 +6,7 @@ import sys
 from src.store import store
 from src.snopes import snopes, article
 from src.twitter import twitter
-#from keep_alive import keep_alive
+from keep_alive import keep_alive
 
 def post_tweet(art: article) -> None:
 
@@ -24,8 +24,6 @@ def post_tweet(art: article) -> None:
 
   reply = f"This claim is rated: {extInfo['display']}\n{art.url}"
   print(reply)
-
-  return
 
   # get stored token
   token = store.get_oauth_token()
@@ -62,8 +60,7 @@ def post_tweet(art: article) -> None:
 def filter_articles(arts: list) -> list:
 
   arr = []
-  #last_url = store.get_last_snopes_url()
-  last_url = ""
+  last_url = store.get_last_snopes_url()
 
   # keep adding new articles until the last one has been detected
   for art in arts:
@@ -86,7 +83,7 @@ if __name__ == "__main__":
   logging.disable(sys.maxsize)
 
   # run web server to keep task running
-  #keep_alive()
+  keep_alive()
 
   while True:
 

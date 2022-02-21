@@ -9,6 +9,8 @@
   "TWITTER_API_SNOPES_MAX_RESULTS": "10",
   "APP_NAME": "app-name-here",
   "APP_ENABLED": "False",
+  "APP_SNOPES_FACT_CHECK_URI": "https://www.snopes.com/fact-check/",
+  "APP_SNOPES_FACT_CHECK_TIMEOUT": "10",
   "APP_SNOPES_RATING_FILE": "./resources/snopes_ratings.json",
   "APP_SNOPES_DETAIL_TIMEOUT": "10",
   "APP_CHECK_TIMEOUT": "60",
