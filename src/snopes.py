@@ -35,6 +35,18 @@ class snopes:
     return info
 
   @staticmethod
+  def get_articles() -> dict:
+
+    snFCUrl = "https://www.snopes.com/fact-check/"
+
+    with urllib.request.urlopen(snFCUrl) as resp:
+
+      page = htmldom.HtmlDom().createDom(resp.read().decode("utf-8"))
+      body > div.container.mt-3 > div > div.col-12.col-lg-8.mb-3 > main > div.card.list-archive > div
+
+
+
+  @staticmethod
   def get_rating_info(rating: str) -> dict:
 
     file = os.getenv("APP_SNOPES_RATING_FILE", None)
