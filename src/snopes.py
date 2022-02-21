@@ -1,8 +1,10 @@
+import html
 import json
 import os
 import urllib
-from htmldom import htmldom
+import urllib.request
 from urllib.error import URLError
+from htmldom import htmldom
 
 class snopes:
 
@@ -35,16 +37,25 @@ class snopes:
     return info
 
   @staticmethod
-  def get_articles() -> dict:
+  def get_articles() -> list:
 
-    snFCUrl = "https://www.snopes.com/fact-check/"
+    arr = []
+    url = os.getenv("APP_SNOPES_FACT_CHECK_URI")
+    tm = int(os.getenv("APP_SNOPES_FACT_CHECK_TIMEOUT", 10))
 
-    with urllib.request.urlopen(snFCUrl) as resp:
+    with urllib.request.urlopen(url, timeout=tm) as resp:
 
       page = htmldom.HtmlDom().createDom(resp.read().decode("utf-8"))
-      body > div.container.mt-3 > div > div.col-12.col-lg-8.mb-3 > main > div.card.list-archive > div
+      nodes = page.find("div[data-component=archive-list] article")
 
+      for node in nodes:
+        try:
+          arr.append(article.fromdom(node))
+        except Exception as ex:
+          print(repr(ex))
+          continue
 
+    return arr
 
   @staticmethod
   def get_rating_info(rating: str) -> dict:
@@ -58,3 +69,24 @@ class snopes:
             return r
     except:
       return None
+
+
+class article:
+
+  def __init__(self):
+    self.title = None
+    self.subtitle = None
+    self.rating = None
+    self.url = None
+
+  def hasRating(self) -> bool:
+    return bool(self.rating)
+
+  @classmethod
+  def fromdom(cls, node: htmldom.HtmlDomNode):
+    art = cls()
+    art.title = html.unescape(node.find("div.media-body > span.title").first().text().strip())
+    art.subtitle = html.unescape(node.find("div.media-body > span.subtitle").first().text().strip())
+    art.rating = html.unescape(node.find("div.media-body > ul span").text().strip())
+    art.url = html.unescape(node.children("a").first().attr("href"))
+    return art

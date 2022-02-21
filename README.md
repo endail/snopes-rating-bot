@@ -38,6 +38,10 @@
 
 > If not set to True, app will exit immediately.
 
+### APP_SNOPES_FACT_CHECK_URI
+
+> URL to Snopes.com's fact check section.
+
 ### APP_SNOPES_RATING_FILE
 
 > Path to the `.json` file containing descriptions of each [Snopes rating](https://www.snopes.com/fact-check-ratings/).

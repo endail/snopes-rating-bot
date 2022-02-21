@@ -4,28 +4,47 @@ import time
 import logging
 import sys
 from src.store import store
-from src.snopes import snopes
+from src.snopes import snopes, article
 from src.twitter import twitter
-from keep_alive import keep_alive
+#from keep_alive import keep_alive
 
-def post_reply(client: tweepy.Client, snInfo: dict, snTweet: dict) -> None:
+def post_tweet(art: article) -> None:
 
   print("-----")
 
-  extInfo = snopes.get_rating_info(snInfo["rating"])
-
-  if extInfo == None:
-    print(f"Unknown rating {snInfo['rating']}")
+  if not art.hasRating():
+    print(f"Article {art.url} has no rating")
     return
 
-  reply = f"This claim is rated: {extInfo['display']}\n{snInfo['final_url']}"
+  extInfo = snopes.get_rating_info(art.rating.lower())
+
+  if extInfo == None:
+    print(f"Unknown rating {art.rating} for {art.url}")
+    return
+
+  reply = f"This claim is rated: {extInfo['display']}\n{art.url}"
   print(reply)
+
+  return
+
+  # get stored token
+  token = store.get_oauth_token()
+
+  # refresh token if needed
+  if twitter.token_has_expired(token):
+    print("Token has expired; refreshing now...")
+    token = twitter.get_access_token(token)
+    store.set_oauth_token(token)
+
+  # setup a tweepy client to post to twitter
+  client = tweepy.Client(
+    bearer_token=token["access_token"],
+    wait_on_rate_limit=True)
 
   try:
 
     resp = client.create_tweet(
       text=reply,
-      in_reply_to_tweet_id=snTweet.id,
       user_auth=False)
 
     if resp != None and resp.data != None:
@@ -40,6 +59,22 @@ def post_reply(client: tweepy.Client, snInfo: dict, snTweet: dict) -> None:
   finally:
     print("-----\n")
 
+def filter_articles(arts: list) -> list:
+
+  arr = []
+  #last_url = store.get_last_snopes_url()
+  last_url = ""
+
+  # keep adding new articles until the last one has been detected
+  for art in arts:
+    if art.url == last_url:
+      break
+    else:
+      arr.append(art)
+
+  return arr
+  
+
 if __name__ == "__main__":
 
   # app run guard
@@ -51,50 +86,25 @@ if __name__ == "__main__":
   logging.disable(sys.maxsize)
 
   # run web server to keep task running
-  keep_alive()
-
-  print("Getting details from database")
-  mostRecentId = store.get_last_twitter_id()
-  token = store.get_oauth_token()
+  #keep_alive()
 
   while True:
 
-    # refresh token if needed
-    if twitter.token_has_expired(token):
-      print("Token has expired; refreshing now...")
-      token = twitter.get_access_token(token)
-      store.set_oauth_token(token)
+    try:
+      arts = snopes.get_articles()
+      print(f"Obtained {len(arts)} articles from snopes.com")
 
-    # setup a tweepy client to query twitter
-    client = tweepy.Client(
-      bearer_token=token["access_token"],
-      wait_on_rate_limit=True)
+      arts = filter_articles(arts)
+      print(f"Filtered down to {len(arts)} articles")
 
-    # get snopes tweets
-    resp = twitter.get_snopes_tweets(client, mostRecentId=mostRecentId)
-
-    if resp != None and resp.meta["result_count"] > 0:
-
-      print(f"Obtained {resp.meta['result_count']} tweets")
-
-      # iterate over tweets in reverse so oldest are handled first
-      for tweet in reversed(resp.data):
-
-        # get info from the url in the tweet
-        info = snopes.get_details(tweet.entities["urls"][0]["expanded_url"])
-
-        # skip for any which don't return a valid rating
-        if info["rating"] == None:
-          print(f"Ignoring tweet https://twitter.com/snopes/status/{tweet.id}")
-          continue
-
-        post_reply(client, info, tweet)
+      for art in arts:
+        post_tweet(art)
         time.sleep(int(os.getenv("APP_TWEET_INTERVAL_TIMEOUT"), 0))
 
-      # store most recent id
-      mostRecentId = resp.meta["newest_id"]
-      store.set_last_twitter_id(resp.meta["newest_id"])
+    except Exception as ex:
+      print(repr(ex))
 
     # sleep until next check for tweets
+    arts.clear()
     print(f"Sleeping for {os.getenv('APP_CHECK_TIMEOUT')} seconds...")
     time.sleep(int(os.getenv("APP_CHECK_TIMEOUT")))

@@ -142,6 +142,15 @@
     "short_description": "We created The Repository of Lost Legends (TRoLL for short) for those of you who don’t let the truth get in the way of a good story. If you have a taste for the unusual and arcane (and can suspend your disbelief just a little), sample some of these precious gems.",
     "img": "https://www.snopes.com/tachyon/2021/04/snopes-rating-icon-lost-legends.png",
     "url": "https://www.snopes.com/fact-check/rating/lost-legend/"
+  },
+
+  {
+    "name": "research in progress",
+    "display": "Research In Progress",
+    "description": "This rating is used with pages that present items which we are currently investigating but have not yet reached any publishable conclusion about.",
+    "short_description": "This rating is used with pages that present items which we are currently investigating but have not yet reached any publishable conclusion about.",
+    "img": "https://www.snopes.com/tachyon/2018/03/rating-research-in-progress.png",
+    "url": "https://www.snopes.com/fact-check/rating/research-in-progress/"
   }
 
 ]

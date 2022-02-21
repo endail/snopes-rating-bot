@@ -19,3 +19,11 @@ class store:
   @staticmethod
   def set_last_twitter_id(lastId: str) -> None:
     db["last_twitter_id"] = lastId
+
+  @staticmethod
+  def get_last_snopes_url() -> str:
+    return db["last_snopes_url"]
+
+  @staticmethod
+  def set_last_snopes_url(url: str) -> None:
+    db["last_snopes_url"] = url
