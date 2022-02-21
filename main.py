@@ -94,7 +94,7 @@ if __name__ == "__main__":
       arts = filter_articles(arts)
       print(f"Filtered down to {len(arts)} articles")
 
-      for art in arts:
+      for art in reversed(arts):
         post_tweet(art)
         time.sleep(int(os.getenv("APP_TWEET_INTERVAL_TIMEOUT"), 0))
 
