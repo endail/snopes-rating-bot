@@ -10,4 +10,5 @@ if __name__ == "__main__":
 
   store.set_oauth_token(defaultToken)
   store.set_last_twitter_id(None)
+  store.set_last_snopes_url(None)
   print("done")
