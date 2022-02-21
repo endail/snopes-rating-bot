@@ -101,7 +101,7 @@ if __name__ == "__main__":
 
       # store most recent url
       if len(arts) > 0:
-        store.get_last_snopes_url(arts[0].url)
+        store.set_last_snopes_url(arts[0].url)
 
     except Exception as ex:
       print(repr(ex))
