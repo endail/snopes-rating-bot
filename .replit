@@ -3,9 +3,9 @@
 
 run = "python main.py"
 
-onBoot = "python main.py"
+onBoot = "touch ./hello"
 
-onboot = "python main.py"
+onboot = "touch ./hello2"
 
 # entrypoint = "main.py"
 
