@@ -1,5 +1,11 @@
 
-run = "python -m pip install --upgrade pip && poetry install && python main.py"
+#run = "while true; do python -m pip install --upgrade pip && poetry install && python main.py; done"
+
+run = "python main.py"
+
+onBoot = "python main.py"
+
+onboot = "python main.py"
 
 # entrypoint = "main.py"
 
