@@ -3,7 +3,8 @@
 
 run = "python main.py"
 
-onboot = "python main.py"
+#onboot = "python main.py"
+onboot = "python -m pip install --upgrade && poetry install"
 
 # entrypoint = "main.py"
 
