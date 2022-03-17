@@ -8,6 +8,16 @@ from src.snopes import snopes, article
 from src.twitter import twitter
 from keep_alive import keep_alive
 
+def format_tweet(art: article, extInfo: dict) -> str:
+
+  symbolPrefix = extInfo['symbol']
+
+  # append a separator
+  if symbolPrefix != "":
+    symbolPrefix += " "
+
+  return f"{symbolPrefix}{extInfo['display']}\n{art.url}"
+
 def post_tweet(art: article) -> None:
 
   print("-----")
@@ -22,7 +32,7 @@ def post_tweet(art: article) -> None:
     print(f"Unknown rating {art.rating} for {art.url}")
     return
 
-  reply = f"This claim is rated: {extInfo['display']}\n{art.url}"
+  reply = format_tweet(art, extInfo)
   print(reply)
 
   # get stored token
