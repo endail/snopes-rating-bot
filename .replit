@@ -1,5 +1,9 @@
+#run = "while true; do python -m pip install --upgrade pip && poetry install && python main.py; done"
 
-run = "python -m pip install --upgrade pip && poetry install && python main.py"
+run = "pip install --upgrade pip && poetry install && git commit -am 'install packages' || python main.py"
+
+#onboot = "python main.py"
+onboot = "pip install --upgrade pip && poetry install && git commit -am 'install packages'"
 
 # entrypoint = "main.py"
 
