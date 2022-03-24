@@ -22,7 +22,7 @@
 
   {
     "name": "mixture",
-    "display": "Mixture",
+    "display": "Mixture of Fact and Fiction",
     "description": "This rating indicates that a claim has significant elements of both truth and falsity to it such that it could not fairly be described by any other rating.",
     "short_description": "This rating indicates that a claim has significant elements of both truth and falsity to it such that it could not fairly be described by any other rating.",
     "img": "https://www.snopes.com/tachyon/2018/03/rating-mixture.png",
@@ -57,7 +57,7 @@
     "short_description": "This rating indicates that insufficient evidence exists to establish the given claim as true, but the claim cannot be definitively proved false.",
     "img": "https://www.snopes.com/tachyon/2018/03/rating-unproven.png",
     "url": "https://www.snopes.com/fact-check/rating/unproven/",
-    "symbol": "❓"
+    "symbol": "❌"
   },
 
   {
@@ -77,7 +77,7 @@
     "short_description": "This rating is used with photographs and videos that are “real” but are nonetheless misleading because they are accompanied by explanatory material that falsely describes their origin, context, and/or meaning.",
     "img": "https://www.snopes.com/tachyon/2018/03/rating-miscaptioned.png",
     "url": "https://www.snopes.com/fact-check/rating/miscaptioned/",
-    "symbol": "💬"
+    "symbol": "❌"
   },
 
   {
@@ -122,12 +122,12 @@
 
   {
     "name": "labeled satire",
-    "display": "Labeled Satire",
+    "display": "Satire",
     "description": "This rating indicates that a claim is derived from content described by its creator and/or the wider audience as satire. Not all content described by its creator or audience as ‘satire’ necessarily constitutes satire, and this rating does not make a distinction between ‘real’ satire and content that may not be effectively recognized or understood as satire despite being labeled as such.",
     "short_description": "This rating indicates that a claim is derived from content described by its creator and/or the wider audience as satire.",
     "img": "https://www.snopes.com/tachyon/2019/08/snopes-rating-icon-satire_4x.png",
     "url": "https://www.snopes.com/fact-check/rating/labeled-satire/",
-    "symbol": ""
+    "symbol": "❌"
   },
 
   {
@@ -137,7 +137,7 @@
     "short_description": "This rating refers to content that originally came from a site described as satire, but was later stripped of some of its satirical markings, repackaged, and posted elsewhere.",
     "img": "https://www.snopes.com/tachyon/2019/08/snopes-rating-icon-satire_4x.png",
     "url": "https://www.snopes.com/fact-check/rating/originated-as-satire/",
-    "symbol": ""
+    "symbol": "❌"
   },
 
   {
@@ -147,7 +147,7 @@
     "short_description": "This rating is applied to genuine product recall notices.",
     "img": "https://www.snopes.com/tachyon/2021/04/snopes-rating-icon-recall.png",
     "url": "https://www.snopes.com/fact-check/rating/recall/",
-    "symbol": "🔙"
+    "symbol": "⬅"
   },
 
   {
