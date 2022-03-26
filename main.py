@@ -22,7 +22,7 @@ def format_tweet(art: article, extInfo: dict) -> str:
     if symbolPrefix != "":
       symbolPrefix += " "
 
-    return f"{symbolPrefix}{extInfo['display']} #factcheck {hashtags}\n\n{extInfo['short_description']}\n{art.url}"
+    return f"{symbolPrefix}{extInfo['display']} #factcheck {hashtags}\n{art.url}"
 
   else:
     # ...while others are not
