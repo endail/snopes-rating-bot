@@ -1,4 +1,6 @@
 
+# need to delete from replit pip packages
+
 pip install --upgrade pip;
 poetry install --no-root;
 

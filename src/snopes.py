@@ -28,7 +28,7 @@ class article:
     
     nlp = spacy.load("en_core_web_sm")
     result = []
-    pos_tag = ['PROPN']
+    pos_tag = ['PROPN', 'NOUN']
     doc = nlp(self.claim.lower())
 
     for token in doc:
