@@ -10,7 +10,7 @@ from keep_alive import keep_alive
 
 def format_tweet(art: article, extInfo: dict) -> str:
 
-  hashtags = [('#' + x[0]) for x in art.getKeywords()]
+  hashtags = [('#' + x) for x in art.getKeywords()]
   hashtags = ' '.join(hashtags)
 
   # some snopes articles are advertised as interrogatories
