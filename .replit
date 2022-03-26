@@ -1,9 +1,7 @@
 
-#run = "(git checkout working && git fetch && git rebase origin/main && pip install --upgrade pip && poetry lock --no-update && poetry install) || (git add -A && git commit -am 'install packages') || python main.py"
-run = "(pip install --upgrade pip && poetry lock --no-update && poetry install) || (git add -A && git commit -am 'install packages') || python main.py"
+run = "bash update.bash && poetry run python main.py"
 
-#onboot = "git checkout working && git fetch && git rebase origin/main && pip install --upgrade pip && poetry lock --no-update && poetry install && git add -A && git commit -am 'install packages'"
-onboot = "(pip install --upgrade pip && poetry lock --no-update && poetry install) || (git add -A && git commit -am 'install packages')"
+onboot = "bash update.bash"
 
 # entrypoint = "main.py"
 
