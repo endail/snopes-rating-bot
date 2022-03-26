@@ -6,6 +6,9 @@ import urllib.request
 import urllib.response
 from urllib.error import URLError
 from htmldom import htmldom
+import spacy
+from collections import Counter
+from string import punctuation
 
 class article:
 
@@ -20,6 +23,24 @@ class article:
 
   def isQuestion(self) -> bool:
     return self.claim.endswith("?")
+
+  def getKeywords(self) -> set:
+    
+    nlp = spacy.load("en_core_web_sm")
+    result = []
+    pos_tag = ['PROPN', 'ADJ', 'NOUN']
+    doc = nlp(self.claim.lower())
+
+    for token in doc:
+      
+      if token.text in nlp.Defaults.stop_words or token.text in punctuation:
+        continue
+
+      if token.pos_ in pos_tag:
+        result.append(token.text)
+
+    return set(result)
+
 
   @classmethod
   def fromdom(cls, node: htmldom.HtmlDomNode):
