@@ -18,6 +18,9 @@ class article:
   def hasRating(self) -> bool:
     return bool(self.rating)
 
+  def isQuestion(self) -> bool:
+    return self.claim.endswith("?")
+
   @classmethod
   def fromdom(cls, node: htmldom.HtmlDomNode):
     art = cls()

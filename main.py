@@ -10,13 +10,20 @@ from keep_alive import keep_alive
 
 def format_tweet(art: article, extInfo: dict) -> str:
 
-  symbolPrefix = extInfo['symbol']
+  # some snopes articles are advertised as interrogatories
+  if art.isQuestion():
 
-  # append a separator
-  if symbolPrefix != "":
-    symbolPrefix += " "
+    symbolPrefix = extInfo['symbol']
 
-  return f"{symbolPrefix}{extInfo['display']} #factcheck\n\n{extInfo['short_description']}\n{art.url}"
+    # append a separator
+    if symbolPrefix != "":
+      symbolPrefix += " "
+
+    return f"{symbolPrefix}{extInfo['display']} #factcheck\n\n{extInfo['short_description']}\n{art.url}"
+
+  else:
+    # ...while others are not
+    return f"#factcheck\n{art.url}"
 
 def post_tweet(art: article) -> None:
 
