@@ -9,7 +9,7 @@ def home():
   return "Server Alive!"
 
 def run():
-  serve(app, host="0.0.0.0", port=80)
+  serve(app, host="0.0.0.0", port=80, threads=1)
   #app.run(host="0.0.0.0", port=8080)
 
 def keep_alive():
