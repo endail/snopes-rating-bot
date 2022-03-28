@@ -1,6 +1,9 @@
 import os
 import tweepy
 import time
+import regex
+
+# use pip install regex, not re module
 
 class twitter:
 
@@ -32,3 +35,9 @@ class twitter:
       max_results=int(os.getenv("TWITTER_API_SNOPES_MAX_RESULTS")),
       expansions=["attachments.media_keys"],
       tweet_fields=["entities"])
+
+  @staticmethod
+  def is_valid_hashtag(tag: str) -> bool:
+    # https://stackoverflow.com/a/36902556/570787
+    pattern = r'(^|\s)([#＃][\w\u05be\u05f3\u05f4]*[\p{L}_]+[\w\u05be\u05f3\u05f4]*)'
+    return bool(regex.match(pattern, tag))

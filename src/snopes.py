@@ -7,8 +7,7 @@ import urllib.response
 from urllib.error import URLError
 from htmldom import htmldom
 import spacy
-from collections import Counter
-from string import punctuation
+from .twitter import twitter
 
 class article:
 
@@ -24,23 +23,47 @@ class article:
   def isQuestion(self) -> bool:
     return self.claim.endswith("?")
 
-  def getKeywords(self) -> set:
-    
+  def getKeywords(self) -> list:
+
+    tokens = []
+    pos_tags = ["PROPN", "NOUN"]
     nlp = spacy.load("en_core_web_sm")
-    result = []
-    pos_tag = ['PROPN', 'NOUN']
-    doc = nlp(self.claim.lower())
+    doc = nlp(self.claim)
 
     for token in doc:
-      
-      if token.text in nlp.Defaults.stop_words or token.text in punctuation:
+
+      # ignore stop characters, punctuation, digits, and whitespace
+      if token.is_stop or token.is_punct or token.is_digit or token.is_space:
         continue
 
-      if token.pos_ in pos_tag:
-        result.append(token.text)
+      # ignore quote marks, currency symbols, urls, and email addresses
+      if token.is_quote or token.is_currency or token.like_url or token.like_email:
+        continue
 
-    return set(result)
+      if token.pos_ not in pos_tags:
+        continue
 
+      # check if the token would be a valid twitter hashtag
+      if twitter.is_valid_hashtag("#" + token.text):
+        tokens.append(token)
+
+    # get a unique list of tokens based on lower case
+    return list(set(["#" + token.lemma_.lower() for token in tokens]))
+
+    #nlp = spacy.load("en_core_web_sm")
+    #result = []
+    #pos_tag = ['PROPN', 'NOUN']
+    #doc = nlp(self.claim.lower())
+
+    #for token in doc:
+    #  
+    #  if token.text in nlp.Defaults.stop_words or token.text in punctuation:
+    #    continue
+
+    #  if token.pos_ in pos_tag:
+    #    result.append(token.text)
+
+    #return set(result)
 
   @classmethod
   def fromdom(cls, node: htmldom.HtmlDomNode):
