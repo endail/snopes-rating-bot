@@ -3,8 +3,6 @@ import tweepy
 import time
 import regex
 
-# use pip install regex, not re module
-
 class twitter:
 
   @staticmethod
@@ -39,5 +37,6 @@ class twitter:
   @staticmethod
   def is_valid_hashtag(tag: str) -> bool:
     # https://stackoverflow.com/a/36902556/570787
+    # need to use regex module (not re) for unicode support, spec \p{L}
     pattern = r'(^|\s)([#＃][\w\u05be\u05f3\u05f4]*[\p{L}_]+[\w\u05be\u05f3\u05f4]*)'
     return bool(regex.match(pattern, tag))

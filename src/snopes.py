@@ -44,26 +44,11 @@ class article:
         continue
 
       # check if the token would be a valid twitter hashtag
-      if twitter.is_valid_hashtag("#" + token.text):
+      if twitter.is_valid_hashtag("#" + token.lemma_.lower()):
         tokens.append(token)
 
     # get a unique list of tokens based on lower case
     return list(set(["#" + token.lemma_.lower() for token in tokens]))
-
-    #nlp = spacy.load("en_core_web_sm")
-    #result = []
-    #pos_tag = ['PROPN', 'NOUN']
-    #doc = nlp(self.claim.lower())
-
-    #for token in doc:
-    #  
-    #  if token.text in nlp.Defaults.stop_words or token.text in punctuation:
-    #    continue
-
-    #  if token.pos_ in pos_tag:
-    #    result.append(token.text)
-
-    #return set(result)
 
   @classmethod
   def fromdom(cls, node: htmldom.HtmlDomNode):
