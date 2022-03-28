@@ -62,7 +62,7 @@ class article:
   @classmethod
   def fromdetail(cls, resp: urllib.response):
 
-    if not resp.url.startswith("https://www.snopes.com/fact-check/"):
+    if not resp.url.startswith(os.getenv("APP_SNOPES_FACT_CHECK_URI")):
       raise URLError("URL does not lead to snopes.com")
 
     art = cls()
