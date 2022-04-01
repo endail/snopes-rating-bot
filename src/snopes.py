@@ -21,7 +21,7 @@ class article:
     return bool(self.rating)
 
   def isQuestion(self) -> bool:
-    return self.claim.endswith("?")
+    return self.claim.rstrip("'\"").endswith("?")
 
   def getKeywords(self) -> list:
 
