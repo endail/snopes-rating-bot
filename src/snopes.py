@@ -26,7 +26,8 @@ class article:
   def getKeywords(self) -> list:
 
     tokens = []
-    pos_tags = ["PROPN", "NOUN"]
+    # https://machinelearningknowledge.ai/tutorial-on-spacy-part-of-speech-pos-tagging/#Spacy_POS_Tags_List
+    pos_tags = ["PROPN", "NOUN", "ADJ", "VERB", "X"]
     nlp = spacy.load(os.getenv("APP_SPACY_MODEL"))
     doc = nlp(self.claim)
 
