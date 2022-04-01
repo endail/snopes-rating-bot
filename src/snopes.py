@@ -48,7 +48,7 @@ class article:
         tokens.append(token)
 
     # get a unique list of tokens based on lower case
-    return list(set(["#" + token.lemma_.lower() for token in tokens]))
+    return list(set([token.lemma_.lower() for token in tokens]))
 
   @classmethod
   def fromdom(cls, node: htmldom.HtmlDomNode):

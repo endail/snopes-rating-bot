@@ -1,12 +1,12 @@
-if [ ! -f ".updated" ]; then
 
-  pip install --upgrade pip;
-  poetry install --no-root --no-dev --remove-untracked;
+rm -rf /opt/virtualenvs/python3/lib/python3.8/site-packages/*;
 
-  touch .updated;
+PYTHONPATH=site-packages;
 
-  git add -A;
-  git rm .updated;
-  git diff-index --quiet HEAD || git commit -am 'install packages';
+python -m ensurepip;
 
-fi
+until poetry install --no-dev
+do 
+  echo "restarting poetry install";
+  sleep 1;
+done

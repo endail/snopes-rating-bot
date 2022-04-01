@@ -1,6 +1,5 @@
 
-run = "bash update.bash && poetry run python main.py"
-
+run = "bash run.bash"
 onboot = "bash update.bash"
 
 # entrypoint = "main.py"

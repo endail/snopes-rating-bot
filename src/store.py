@@ -1,6 +1,5 @@
 from replit import db
 import json
-import os
 
 class store:
 
