@@ -33,3 +33,7 @@ poetry install --no-dev;
 # commit all the packages
 git add site-packages/*;
 git diff-index --quiet HEAD || git commit -am "install python packages";
+
+# have something here to store when the last update occurred
+# and on which repl hostname/id/image/cluster
+# perhaps this can be used to detect when an update needs to occur?
