@@ -1,16 +1,17 @@
+from datetime import datetime
 from flask import Flask
+import os
 from threading import Thread
 from waitress import serve
-from datetime import datetime
 
-app = Flask("snopes-rating-bot")
+app = Flask(os.getenv('APP_NAME', ''))
 
-@app.route("/")
+@app.route('/')
 def home():
   return str(datetime.utcnow())
 
 def run():
-  serve(app, host="0.0.0.0", port=80, threads=2)
+  serve(app, host='0.0.0.0', port=80, threads=2)
   #app.run(host="0.0.0.0", port=8080)
 
 def keep_alive():

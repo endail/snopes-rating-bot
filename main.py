@@ -10,27 +10,19 @@ from keep_alive import keep_alive
 
 def format_tweet(art: article, extInfo: dict) -> str:
 
-  hashtags = [('#' + x) for x in art.getKeywords()]
-  hashtags = ' '.join(hashtags)
+  hashtags = os.getenv('APP_DEFAULT_HASHTAGS', '') + ' '.join(art.getHashtags())
 
-  # some snopes articles are advertised as interrogatories
+  # some snopes articles are advertised as interrogatories (ie. ending in a "?")
   if art.isQuestion():
-
-    symbolPrefix = extInfo['symbol']
-
-    # append a separator
-    if symbolPrefix != "":
-      symbolPrefix += " "
-
-    return f"{symbolPrefix}{extInfo['display']} #factcheck {hashtags}\n{art.url}"
-
+    symbolPrefix = (extInfo['symbol'] + ' ') if extInfo['symbol'] != None else ''
+    return f"{symbolPrefix}{extInfo['display']} {hashtags}\n{art.url}"
   else:
     # ...while others are not
-    return f"#factcheck {hashtags}\n{art.url}"
+    return f"{hashtags}\n{art.url}"
 
 def post_tweet(art: article) -> None:
 
-  print("-----")
+  print('-----')
 
   if not art.hasRating():
     print(f"Article {art.url} has no rating")
@@ -56,7 +48,7 @@ def post_tweet(art: article) -> None:
 
   # setup a tweepy client to post to twitter
   client = tweepy.Client(
-    bearer_token=token["access_token"],
+    bearer_token=token['access_token'],
     wait_on_rate_limit=True)
 
   try:
@@ -66,7 +58,7 @@ def post_tweet(art: article) -> None:
       user_auth=False)
 
     if resp != None and resp.data != None:
-      print(f"New tweet link: https://twitter.com/snopesratingbot/status/{resp.data['id']}")
+      print(f"New tweet link: https://twitter.com/{os.getenv('APP_TWITTER_BOT_USERNAME')}/status/{resp.data['id']}")
 
   except tweepy.HTTPException as ex:
     print(ex)
@@ -75,7 +67,7 @@ def post_tweet(art: article) -> None:
     print(ex.api_errors)
 
   finally:
-    print("-----\n")
+    print(f"-----{os.linesep}")
 
 def filter_articles(arts: list) -> list:
 
@@ -90,13 +82,13 @@ def filter_articles(arts: list) -> list:
       arr.append(art)
 
   return arr
-  
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
 
   # app run guard
-  if os.getenv("APP_ENABLED", "False") != "True":
-    print("App not enabled; exiting")
+  if os.getenv('APP_ENABLED', 'False') != 'True':
+    print('App not enabled; exiting')
     exit()
 
   # disable logging for replit __logs and __tail
@@ -117,7 +109,7 @@ if __name__ == "__main__":
       # tweet in reverse order so most recent article is tweeted last
       for art in reversed(arts):
         post_tweet(art)
-        time.sleep(int(os.getenv("APP_TWEET_INTERVAL_TIMEOUT"), 0))
+        time.sleep(int(os.getenv('APP_TWEET_INTERVAL_TIMEOUT'), 0))
 
       # store most recent url
       if len(arts) > 0:
@@ -129,4 +121,4 @@ if __name__ == "__main__":
     # sleep until next check for tweets
     arts.clear()
     print(f"Sleeping for {os.getenv('APP_CHECK_TIMEOUT')} seconds...")
-    time.sleep(int(os.getenv("APP_CHECK_TIMEOUT")))
+    time.sleep(int(os.getenv('APP_CHECK_TIMEOUT')))

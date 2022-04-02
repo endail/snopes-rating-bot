@@ -7,7 +7,7 @@
   "TWITTER_API_TOKEN_TIMEOUT": "600",
   "TWITTER_API_SNOPES_QUERY": "from:14294848 has:links -is:retweet -is:reply -is:quote",
   "TWITTER_API_SNOPES_MAX_RESULTS": "10",
-  "APP_NAME": "app-name-here",
+  "APP_NAME": "snopes-rating-bot",
   "APP_ENABLED": "False",
   "APP_SNOPES_FACT_CHECK_URI": "https://www.snopes.com/fact-check/",
   "APP_SNOPES_FACT_CHECK_TIMEOUT": "10",
@@ -15,5 +15,7 @@
   "APP_SNOPES_DETAIL_TIMEOUT": "10",
   "APP_SPACY_MODEL": "en_core_web_sm",
   "APP_CHECK_TIMEOUT": "60",
-  "APP_TWEET_INTERVAL_TIMEOUT": "1"
+  "APP_TWEET_INTERVAL_TIMEOUT": "1",
+  "APP_TWITTER_BOT_USERNAME": "SnopesRatingBot",
+  "APP_DEFAULT_HASHTAGS": "#factcheck"
 }
