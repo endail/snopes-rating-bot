@@ -23,7 +23,7 @@ class article:
   def isQuestion(self) -> bool:
     # remove end quote marks before checking for ?
     # eg. Did Will Smith Make an Alopecia Joke on ‘The Arsenio Hall Show?’
-    return self.claim.rstrip('"\'').endswith('?')
+    return self.claim.rstrip('"’\'').endswith('?')
 
   def getKeywords(self) -> list:
 
@@ -47,16 +47,12 @@ class article:
       if token.pos_ not in pos_tags:
         continue
 
-      # check if the token would be a valid twitter hashtag
-      # see: https://spacy.io/usage/linguistic-features
-      if twitter.is_valid_hashtag(f"#{token.lemma_}"):
-        tokens.append(token)
-
     # get a unique list of tokens based on lower case
+    # see: https://spacy.io/usage/linguistic-features
     return list(set([token.lemma_ for token in tokens]))
 
   def getHashtags(self) -> list:
-    return list(f"#{keyword}" for keyword in self.getKeywords())
+    return list(f"#{k}" for k in self.getKeywords() if twitter.is_valid_hashtag(f"#{k}"))
 
   @classmethod
   def fromdom(cls, node: htmldom.HtmlDomNode):

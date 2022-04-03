@@ -8,16 +8,22 @@ from src.snopes import snopes, article
 from src.twitter import twitter
 from keep_alive import keep_alive
 
+def dotsleep(sec: int):
+  end = time.time() + sec
+  while time.time() < end:
+    print('.', end='', flush=True)
+    time.sleep(1)
+  print(os.linesep())
+
 def format_tweet(art: article, extInfo: dict) -> str:
 
-  hashtags = os.getenv('APP_DEFAULT_HASHTAGS', '') + ' '.join(art.getHashtags())
+  hashtags = os.getenv('APP_DEFAULT_HASHTAGS') + ' '.join(art.getHashtags())
 
   # some snopes articles are advertised as interrogatories (ie. ending in a "?")
   if art.isQuestion():
     symbolPrefix = (extInfo['symbol'] + ' ') if extInfo['symbol'] != None else ''
     return f"{symbolPrefix}{extInfo['display']} {hashtags}\n{art.url}"
   else:
-    # ...while others are not
     return f"{hashtags}\n{art.url}"
 
 def post_tweet(art: article) -> None:
@@ -42,7 +48,7 @@ def post_tweet(art: article) -> None:
 
   # refresh token if needed
   if twitter.token_has_expired(token):
-    print("Token has expired; refreshing now...")
+    print('Token has expired; refreshing now...')
     token = twitter.get_access_token(token)
     store.set_oauth_token(token)
 
@@ -58,7 +64,7 @@ def post_tweet(art: article) -> None:
       user_auth=False)
 
     if resp != None and resp.data != None:
-      print(f"New tweet link: https://twitter.com/{os.getenv('APP_TWITTER_BOT_USERNAME')}/status/{resp.data['id']}")
+      print(f"New tweet link: {twitter.get_tweet_link(resp.data['id'], os.getenv('APP_TWITTER_BOT_USERNAME'))}")
 
   except tweepy.HTTPException as ex:
     print(ex)
@@ -100,6 +106,7 @@ if __name__ == '__main__':
   while True:
 
     try:
+
       arts = snopes.get_articles()
       print(f"Obtained {len(arts)} articles from snopes.com")
 
@@ -109,7 +116,7 @@ if __name__ == '__main__':
       # tweet in reverse order so most recent article is tweeted last
       for art in reversed(arts):
         post_tweet(art)
-        time.sleep(int(os.getenv('APP_TWEET_INTERVAL_TIMEOUT'), 0))
+        time.sleep(int(os.getenv('APP_TWEET_INTERVAL_TIMEOUT')))
 
       # store most recent url
       if len(arts) > 0:
@@ -121,4 +128,5 @@ if __name__ == '__main__':
     # sleep until next check for tweets
     arts.clear()
     print(f"Sleeping for {os.getenv('APP_CHECK_TIMEOUT')} seconds...")
-    time.sleep(int(os.getenv('APP_CHECK_TIMEOUT')))
+    #time.sleep(int(os.getenv('APP_CHECK_TIMEOUT')))
+    dotsleep(int(os.getenv('APP_CHECK_TIMEOUT')))

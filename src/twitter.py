@@ -40,3 +40,11 @@ class twitter:
     # need to use regex module (not re) for unicode support, spec \p{L}
     pattern = r'(^|\s)([#＃][\w\u05be\u05f3\u05f4]*[\p{L}_]+[\w\u05be\u05f3\u05f4]*)'
     return bool(regex.match(pattern, tag))
+
+  @staticmethod
+  def get_profile_link(username: str) -> str:
+    return f"https://twitter.com/{username}"
+
+  @staticmethod
+  def get_tweet_link(tweetId: str, username: str="home") -> str:
+    return f"{twitter.get_profile_link(username)}/{tweetId}"
