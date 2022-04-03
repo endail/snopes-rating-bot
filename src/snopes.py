@@ -7,6 +7,7 @@ import urllib
 import urllib.request
 import urllib.response
 from urllib.error import URLError
+from itertools import takewhile
 from .twitter import twitter
 
 class article:
@@ -113,6 +114,10 @@ class snopes:
           continue
 
     return arr
+
+  @staticmethod
+  def get_new_articles(lastUrl: str=None) -> list:
+    return takewhile(lambda a: a.url != lastUrl, snopes.get_articles())
 
   @staticmethod
   def get_rating_info(rating: str) -> dict:

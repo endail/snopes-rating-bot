@@ -43,10 +43,8 @@ def post_tweet(art: article) -> None:
   reply = format_tweet(art, extInfo)
   print(reply)
 
-  # get stored token
-  token = store.get_oauth_token()
-
   # refresh token if needed
+  token = store.get_oauth_token()
   if twitter.token_has_expired(token):
     print('Token has expired; refreshing now...')
     token = twitter.get_access_token(token)
@@ -58,7 +56,6 @@ def post_tweet(art: article) -> None:
     wait_on_rate_limit=True)
 
   try:
-
     resp = client.create_tweet(
       text=reply,
       user_auth=False)
@@ -75,43 +72,28 @@ def post_tweet(art: article) -> None:
   finally:
     print(f"-----{os.linesep}")
 
-def filter_articles(arts: list) -> list:
-
-  arr = []
-  last_url = store.get_last_snopes_url()
-
-  # keep adding new articles until the last one has been detected
-  for art in arts:
-    if art.url == last_url:
-      break
-    else:
-      arr.append(art)
-
-  return arr
-
 
 if __name__ == '__main__':
+
+  # disable logging for replit __logs and __tail
+  logging.disable(sys.maxsize)
 
   # app run guard
   if os.getenv('APP_ENABLED', 'False') != 'True':
     print('App not enabled; exiting')
     exit()
 
-  # disable logging for replit __logs and __tail
-  logging.disable(sys.maxsize)
-
   # run web server to keep task running
   keep_alive()
+
+  # list of articles, periodically cleared after each check
+  arts = []
 
   while True:
 
     try:
-
-      arts = snopes.get_articles()
-      print(f"Obtained {len(arts)} articles from snopes.com")
-
-      arts = filter_articles(arts)
-      print(f"Filtered down to {len(arts)} articles")
+      arts = snopes.get_new_articles(store.get_last_snopes_url())
+      print(f"Obtained {len(arts)} new articles from snopes.com")
 
       # tweet in reverse order so most recent article is tweeted last
       for art in reversed(arts):
@@ -128,5 +110,4 @@ if __name__ == '__main__':
     # sleep until next check for tweets
     arts.clear()
     print(f"Sleeping for {os.getenv('APP_CHECK_TIMEOUT')} seconds...")
-    #time.sleep(int(os.getenv('APP_CHECK_TIMEOUT')))
     dotsleep(int(os.getenv('APP_CHECK_TIMEOUT')))
