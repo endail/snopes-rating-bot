@@ -13,7 +13,7 @@ def dotsleep(sec: int):
   while time.time() < end:
     print('.', end='', flush=True)
     time.sleep(1)
-  print(os.linesep())
+  print(os.linesep)
 
 def format_tweet(art: article, extInfo: dict) -> str:
 
