@@ -68,6 +68,9 @@ class article:
 
   @classmethod
   def fromdom(cls, node: htmldom.HtmlDomNode):
+    '''
+    Parse an article from the /fact-check index
+    '''
     art = cls()
     art.claim = html.unescape(node.find('div.media-body > span.title').first().text().strip())
     art.subtitle = html.unescape(node.find('div.media-body > span.subtitle').first().text().strip())
@@ -77,6 +80,9 @@ class article:
 
   @classmethod
   def fromdetail(cls, resp: urllib.response):
+    '''
+    Parse an article from the article's web page
+    '''
 
     if not resp.url.startswith(os.getenv('APP_SNOPES_FACT_CHECK_URI')):
       raise URLError(f"URL ({resp.url}) does not lead to {os.getenv('APP_SNOPES_FACT_CHECK_URI')}")
