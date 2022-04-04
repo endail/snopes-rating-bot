@@ -1,23 +1,17 @@
+import logging
 import os
+import sys
 import tweepy
 import time
-import logging
-import sys
+from src.keep_alive import keep_alive
+from src.util import dotsleep
 from src.store import store
 from src.snopes import snopes, article
 from src.twitter import twitter
-from keep_alive import keep_alive
-
-def dotsleep(sec: int):
-  end = time.time() + sec
-  while time.time() < end:
-    print('.', end='', flush=True)
-    time.sleep(1)
-  print(os.linesep)
 
 def format_tweet(art: article, extInfo: dict) -> str:
 
-  hashtags = os.getenv('APP_DEFAULT_HASHTAGS') + ' '.join(art.getHashtags())
+  hashtags = os.getenv('APP_DEFAULT_HASHTAGS', '') + ' '.join(art.getHashtags())
 
   # some snopes articles are advertised as interrogatories (ie. ending in a "?")
   if art.isQuestion():
@@ -98,7 +92,7 @@ if __name__ == '__main__':
       # tweet in reverse order so most recent article is tweeted last
       for art in reversed(arts):
         post_tweet(art)
-        time.sleep(int(os.getenv('APP_TWEET_INTERVAL_TIMEOUT')))
+        time.sleep(int(os.getenv('APP_TWEET_INTERVAL_TIMEOUT', 0)))
 
       # store most recent url
       if len(arts) > 0:

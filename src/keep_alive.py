@@ -11,7 +11,7 @@ def home():
   return str(datetime.utcnow())
 
 def run():
-  serve(app, host='0.0.0.0', port=80, threads=2)
+  serve(app, host='0.0.0.0', port=80, threads=1)
   #app.run(host="0.0.0.0", port=8080)
 
 def keep_alive():

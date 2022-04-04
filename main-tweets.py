@@ -6,7 +6,7 @@ import sys
 from src.store import store
 from src.snopes import snopes
 from src.twitter import twitter
-from keep_alive import keep_alive
+from src.keep_alive import keep_alive
 
 def post_reply(client: tweepy.Client, snInfo: dict, snTweet: dict) -> None:
 

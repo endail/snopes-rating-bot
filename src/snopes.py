@@ -1,14 +1,15 @@
 import html
 from htmldom import htmldom
+from itertools import takewhile
 import json
 import os
 import spacy
+from .twitter import twitter
 import urllib
 import urllib.request
 import urllib.response
 from urllib.error import URLError
-from itertools import takewhile
-from .twitter import twitter
+from urllib.parse import urlparse
 
 class article:
 
@@ -25,6 +26,16 @@ class article:
     # remove end quote marks before checking for ?
     # eg. Did Will Smith Make an Alopecia Joke on ‘The Arsenio Hall Show?’
     return self.claim.rstrip('"’\'').endswith('?')
+
+  def getSlug(self) -> str:
+    # https://www.snopes.com/fact-check/cellphones-homeland-security/
+    base = urlparse(os.getenv('APP_SNOPES_FACT_CHECK_URI'))
+    result = urlparse(self.url)
+    return result['path'].removeprefix(base['path']).strip('/')
+
+  @classmethod
+  def getLinkFromSlug(slug: str) -> str:
+    return f"{os.getenv('APP_SNOPES_FACT_CHECK_URI')}/{slug}/"
 
   def getKeywords(self) -> list:
 
@@ -50,7 +61,7 @@ class article:
 
     # get a unique list of tokens based on lower case
     # see: https://spacy.io/usage/linguistic-features
-    return list(set([token.lemma_ for token in tokens]))
+    return list(set(token.lemma_ for token in tokens))
 
   def getHashtags(self) -> list:
     return list(f"#{k}" for k in self.getKeywords() if twitter.is_valid_hashtag(f"#{k}"))
@@ -95,10 +106,10 @@ class snopes:
       return None
 
   @staticmethod
-  def get_articles() -> list:
+  def get_articles(page: int=1) -> list:
 
     arr = []
-    url = os.getenv('APP_SNOPES_FACT_CHECK_URI')
+    url = f"{os.getenv('APP_SNOPES_FACT_CHECK_URI')}/page/{page}/"
     tm = int(os.getenv('APP_SNOPES_FACT_CHECK_TIMEOUT', 10))
 
     with urllib.request.urlopen(url, timeout=tm) as resp:
@@ -110,7 +121,6 @@ class snopes:
         try:
           arr.append(article.fromdom(node))
         except Exception as ex:
-          print(repr(ex))
           continue
 
     return arr
