@@ -1,5 +1,5 @@
 
-#source ~/.profile
+source ~/.profile
 
 PROJECT_DIR="$HOME/$APP_NAME";
 LOCAL_SP="$PROJECT_DIR/site-packages";
