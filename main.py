@@ -15,7 +15,7 @@ def format_tweet(art: article, extInfo: dict) -> str:
   hashtagStr = os.getenv('APP_DEFAULT_HASHTAGS', '')
 
   if len(hashtags) > 0:
-    hashtagStr = f" {' '.join(art.getHashtags())}"
+    hashtagStr += f" {' '.join(art.getHashtags())}"
 
   # some snopes articles are advertised as interrogatories (ie. ending in a "?")
   if art.isQuestion():
