@@ -59,6 +59,8 @@ class article:
       if token.pos_ not in pos_tags:
         continue
 
+      tokens.append(token)
+
     # get a unique list of tokens based on lower case
     # see: https://spacy.io/usage/linguistic-features
     return list(set(token.lemma_ for token in tokens))
