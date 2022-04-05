@@ -1,10 +1,20 @@
 
+if pgrep -fl "bash update.bash" >/dev/null; then
+  # guard against multiple update invocations
+  echo "$APP_NAME is currently updating";
+  exit 1;
+elif pgrep -fl "bash run.bash" >/dev/null; then
+  # guard against updating while running
+  echo "$APP_NAME is currently running";
+  exit 1;
+fi
+
 PROJECT_DIR="$HOME/$APP_NAME";
 LOCAL_SP="$PROJECT_DIR/site-packages";
 SYSTEM_SP=$(python -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])');
 
-echo "export PYTHONPATH=$HOME/$APP_NAME/site-packages" >> ~/.profile
-source ~/.profile
+echo "export PYTHONPATH=$LOCAL_SP" >> ~/.profile;
+source ~/.profile;
 
 cd "$PROJECT_DIR";
 

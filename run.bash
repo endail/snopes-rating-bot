@@ -1,11 +1,14 @@
 
+# load profile env vars
 source ~/.profile
 
-PROJECT_DIR="$HOME/$APP_NAME";
-LOCAL_SP="$PROJECT_DIR/site-packages";
-#PYTHONPATH="$LOCAL_SP";
+cd "$HOME/$APP_NAME";
 
-cd "$PROJECT_DIR";
+if pgrep -fl "bash update.bash" >/dev/null; then
+  #guard against running while updating
+  echo "$APP_NAME is updating";
+  exit 1;
+fi
 
 # check if python main.py is already running
 # if not, start it
