@@ -11,14 +11,18 @@ from src.twitter import twitter
 
 def format_tweet(art: article, extInfo: dict) -> str:
 
-  hashtags = os.getenv('APP_DEFAULT_HASHTAGS', '') + ' '.join(art.getHashtags())
+  hashtags = art.getHashtags()
+  hashtagStr = os.getenv('APP_DEFAULT_HASHTAGS', '')
+
+  if len(hashtags) > 0:
+    hashtagStr = f" {' '.join(art.getHashtags())}"
 
   # some snopes articles are advertised as interrogatories (ie. ending in a "?")
   if art.isQuestion():
     symbolPrefix = (extInfo['symbol'] + ' ') if extInfo['symbol'] != None else ''
-    return f"{symbolPrefix}{extInfo['display']} {hashtags}\n{art.url}"
+    return f"{symbolPrefix}{extInfo['display']} {hashtagStr}\n{art.url}"
   else:
-    return f"{hashtags}\n{art.url}"
+    return f"{hashtagStr}\n{art.url}"
 
 def post_tweet(art: article) -> None:
 

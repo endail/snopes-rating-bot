@@ -66,7 +66,7 @@ class article:
     return list(set(token.lemma_ for token in tokens))
 
   def getHashtags(self) -> list:
-    return list(f"#{k}" for k in self.getKeywords() if twitter.is_valid_hashtag(f"#{k}"))
+    return list(f"#{k.lower()}" for k in self.getKeywords() if twitter.is_valid_hashtag(f"#{k.lower()}"))
 
   @classmethod
   def fromdom(cls, node: htmldom.HtmlDomNode):
