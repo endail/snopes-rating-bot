@@ -133,7 +133,7 @@ class snopes:
 
   @staticmethod
   def get_new_articles(lastUrl: str=None) -> list:
-    return takewhile(lambda a: a.url != lastUrl, snopes.get_articles())
+    return [takewhile(lambda a: a.url != lastUrl, snopes.get_articles())]
 
   @staticmethod
   def get_rating_info(rating: str) -> dict:
