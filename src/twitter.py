@@ -47,4 +47,4 @@ class twitter:
 
   @staticmethod
   def get_tweet_link(tweetId: str, username: str="home") -> str:
-    return f"{twitter.get_profile_link(username)}/{tweetId}"
+    return f"{twitter.get_profile_link(username)}/status/{tweetId}"
