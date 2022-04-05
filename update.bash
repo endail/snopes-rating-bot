@@ -3,6 +3,9 @@ PROJECT_DIR="$HOME/$APP_NAME";
 LOCAL_SP="$PROJECT_DIR/site-packages";
 SYSTEM_SP=$(python -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])');
 
+echo "export PYTHONPATH=\$HOME/\$APP_NAME/site-packages" >> ~/.profile
+source ~/.profile
+
 cd "$PROJECT_DIR";
 
 # create a dir for the local packages if not already exists
@@ -11,8 +14,6 @@ mkdir -p "$LOCAL_SP";
 # clear the system and local python package dirs
 rm -rf "$LOCAL_SP"/*;
 rm -rf "$SYSTEM_SP"/*;
-
-export PYTHONPATH="$LOCAL_SP";
 
 # make sure at least pip is available
 python -m ensurepip;
