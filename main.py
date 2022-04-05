@@ -20,7 +20,7 @@ def format_tweet(art: article, extInfo: dict) -> str:
   # some snopes articles are advertised as interrogatories (ie. ending in a "?")
   if art.isQuestion():
     symbolPrefix = (extInfo['symbol'] + ' ') if extInfo['symbol'] != None else ''
-    return f"{symbolPrefix}{extInfo['display']} {hashtagStr}\n{art.url}"
+    return f"{symbolPrefix}{extInfo['display']}\n{hashtagStr}\n{art.url}"
   else:
     return f"{hashtagStr}\n{art.url}"
 
