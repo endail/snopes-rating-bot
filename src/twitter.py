@@ -38,7 +38,7 @@ class twitter:
   def is_valid_hashtag(tag: str) -> bool:
     # https://stackoverflow.com/a/36902556/570787
     # need to use regex module (not re) for unicode support, spec \p{L}
-    pattern = r'(?:(?<=\s)|^)#(\w*[A-Za-z_]+\w*)'
+    pattern = r'^([#＃][\w\u05be\u05f3\u05f4]*[\p{L}_]+[\w\u05be\u05f3\u05f4]*)$'
     return bool(regex.match(pattern, tag))
 
   @staticmethod
