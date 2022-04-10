@@ -1,8 +1,7 @@
 
-# load profile env vars
-source ~/.profile
-
 cd "$HOME/$APP_NAME";
+
+bash setenv.bash;
 
 if pgrep -fl "bash update.bash" >/dev/null; then
   # guard against running while updating
