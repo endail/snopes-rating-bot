@@ -1,4 +1,8 @@
 
+# TODO
+# modify these .bash scripts to run as .sh
+# chmod to add execute bit
+
 cd "$HOME/$APP_NAME";
 
 . setenv.bash;
