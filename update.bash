@@ -3,10 +3,6 @@ if pgrep -fl "bash update.bash" >/dev/null; then
   # guard against multiple update invocations
   echo "$APP_NAME is currently updating";
   exit 1;
-elif pgrep -fl "bash run.bash" >/dev/null; then
-  # guard against updating while running
-  echo "$APP_NAME is currently running";
-  exit 1;
 fi
 
 PROJECT_DIR="$HOME/$APP_NAME";
@@ -15,7 +11,7 @@ SYSTEM_SP=$(python -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])
 
 cd "$PROJECT_DIR";
 
-bash setenv.bash;
+. setenv.bash;
 
 # create a dir for the local packages if not already exists
 mkdir -p "$LOCAL_SP";
@@ -39,7 +35,7 @@ python -m pip install --upgrade --force-reinstall pip setuptools wheel poetry;
 poetry install --no-dev;
 
 # commit all the packages for caching
-git add site-packages/*;
+git add -f site-packages/*;
 git diff-index --quiet HEAD || git commit -am "install python packages";
 
 # update details

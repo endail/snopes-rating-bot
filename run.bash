@@ -1,7 +1,7 @@
 
 cd "$HOME/$APP_NAME";
 
-bash setenv.bash;
+. setenv.bash;
 
 if pgrep -fl "bash update.bash" >/dev/null; then
   # guard against running while updating
@@ -12,7 +12,7 @@ fi
 # if tweepy doesn't exist, determine that to mean
 # an update is required
 if ! $(python -c "import tweepy" 2>/dev/null); then
-  bash update.bash;
+  . update.bash;
 fi
 
 # check if python main.py is already running
