@@ -1,5 +1,5 @@
 
-if pgrep -fl "bash update.bash" >/dev/null; then
+if pgrep -fl "[u]pdate.bash" >/dev/null; then
   # guard against multiple update invocations
   echo "$APP_NAME is currently updating";
   exit 1;
