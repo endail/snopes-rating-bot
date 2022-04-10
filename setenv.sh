@@ -7,5 +7,6 @@ LOCAL_SP="$PROJECT_DIR/site-packages";
 
 if ! $(grep -q PYTHONPATH ~/.profile); then
     echo "export PYTHONPATH=$LOCAL_SP" >> ~/.profile;
-    source ~/.profile;
 fi
+
+source ~/.profile;

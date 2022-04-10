@@ -7,7 +7,7 @@ cd "$HOME/$APP_NAME";
 
 . ./setenv.sh;
 
-if pgrep -fl "[u]pdate.bash" >/dev/null; then
+if pgrep -fl "[u]pdate.sh" >/dev/null; then
   # guard against running while updating
   echo "$APP_NAME is updating";
   exit 1;

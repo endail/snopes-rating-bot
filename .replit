@@ -1,6 +1,6 @@
 
-run = "bash run.bash"
-onboot = "bash update.bash"
+run = "bash run.sh"
+onboot = "bash update.sh"
 
 # entrypoint = "main.py"
 
