@@ -100,7 +100,10 @@ if __name__ == '__main__':
       newArts = snopes.get_articles()
 
       #3. filter
-      arts = [a.url not in exUrls for a in newArts]
+      #arts = [a.url not in exUrls for a in newArts]
+      for a in newArts:
+        if a.url not in exUrls:
+          arts.append(a)
 
       print(f"Obtained {len(arts)} new articles from snopes.com")
 
