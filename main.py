@@ -100,7 +100,7 @@ if __name__ == '__main__':
       newArts = snopes.get_articles()
 
       #3. filter
-      arts = filter(lambda a: a.url not in exUrls, newArts)
+      arts = list(filter(lambda a: a.url not in exUrls, newArts))
 
       print(f"Obtained {len(arts)} new articles from snopes.com")
 
