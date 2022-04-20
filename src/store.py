@@ -33,4 +33,4 @@ class store:
 
   @staticmethod
   def set_last_snopes_articles(arts: list) -> None:
-    db.set_raw("last_snopes_articles", json.dumps(arts))
+    db.set_raw("last_snopes_articles", json.dumps([a.__dict__ for a in arts]))
