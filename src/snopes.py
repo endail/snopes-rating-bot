@@ -27,8 +27,8 @@ class article:
     # eg. Did Will Smith Make an Alopecia Joke on ‘The Arsenio Hall Show?’
     return self.claim.rstrip('"’\'').endswith('?')
 
-  def toJSON(self):
-    return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=0)
+  #def toJSON(self):
+  #  return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=0)
 
   def getSlug(self) -> str:
     # https://www.snopes.com/fact-check/cellphones-homeland-security/
