@@ -106,7 +106,7 @@ if __name__ == '__main__':
 
       # tweet in reverse order so most recent article is tweeted last
       for art in reversed(arts):
-      #  post_tweet(art)
+        post_tweet(art)
         time.sleep(int(os.getenv('APP_TWEET_INTERVAL_TIMEOUT', 0)))
       
       store.set_last_snopes_articles([a.url for a in newArts])
