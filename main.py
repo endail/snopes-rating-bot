@@ -86,21 +86,30 @@ if __name__ == '__main__':
 
   # list of articles, periodically cleared after each check
   arts = []
+  newArts = []
+  exUrls = []
 
   while True:
 
     try:
-      arts = snopes.get_new_articles(store.get_last_snopes_articles())
+
+      #1. get list of existing urls
+      exUrls = store.get_last_snopes_articles()
+
+      #2. get the new articles
+      newArts = snopes.get_articles()
+
+      #3. filter
+      arts = [not a.url in exUrls for a in newArts]
+
       print(f"Obtained {len(arts)} new articles from snopes.com")
 
       # tweet in reverse order so most recent article is tweeted last
       for art in reversed(arts):
       #  post_tweet(art)
         time.sleep(int(os.getenv('APP_TWEET_INTERVAL_TIMEOUT', 0)))
-
-      # store most recent url
-      if len(arts) > 0:
-        store.set_last_snopes_articles(arts)
+      
+      store.set_last_snopes_articles([a.url for a in newArts])
 
     except Exception as ex:
       print(repr(ex))

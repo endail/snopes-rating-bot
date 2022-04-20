@@ -32,5 +32,5 @@ class store:
     return json.loads(db.get_raw("last_snopes_articles"))
 
   @staticmethod
-  def set_last_snopes_articles(arts: list) -> None:
-    db.set_raw("last_snopes_articles", json.dumps([a.__dict__ for a in arts]))
+  def set_last_snopes_articles(urls: list) -> None:
+    db.set_raw("last_snopes_articles", json.dumps(urls))

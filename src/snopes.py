@@ -1,6 +1,5 @@
 import html
 from htmldom import htmldom
-from itertools import takewhile
 import json
 import os
 import spacy
@@ -26,9 +25,6 @@ class article:
     # remove end quote marks before checking for ?
     # eg. Did Will Smith Make an Alopecia Joke on ‘The Arsenio Hall Show?’
     return self.claim.rstrip('"’\'').endswith('?')
-
-  def toJSON(self):
-    return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=0)
 
   def getSlug(self) -> str:
     # https://www.snopes.com/fact-check/cellphones-homeland-security/
@@ -138,7 +134,7 @@ class snopes:
 
   @staticmethod
   def get_new_articles(lastArts: list) -> list:
-    #return list(takewhile(lambda a: a.url != lastUrl, snopes.get_articles()))
+    
     arr = []
 
     for ca in snopes.get_articles():
