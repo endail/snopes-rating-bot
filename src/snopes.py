@@ -134,8 +134,15 @@ class snopes:
     return arr
 
   @staticmethod
-  def get_new_articles(lastUrl: str=None) -> list:
-    return list(takewhile(lambda a: a.url != lastUrl, snopes.get_articles()))
+  def get_new_articles(lastArts: list) -> list:
+    #return list(takewhile(lambda a: a.url != lastUrl, snopes.get_articles()))
+    arr = []
+
+    for ca in snopes.get_articles():
+      if not any(ca.url == la.url for la in lastArts):
+        arr.append(ca)
+
+    return arr
 
   @staticmethod
   def get_rating_info(rating: str) -> dict:

@@ -90,7 +90,7 @@ if __name__ == '__main__':
   while True:
 
     try:
-      arts = snopes.get_new_articles(store.get_last_snopes_url())
+      arts = snopes.get_new_articles(store.get_last_snopes_articles())
       print(f"Obtained {len(arts)} new articles from snopes.com")
 
       # tweet in reverse order so most recent article is tweeted last
@@ -100,7 +100,7 @@ if __name__ == '__main__':
 
       # store most recent url
       if len(arts) > 0:
-        store.set_last_snopes_url(arts[0].url)
+        store.set_last_snopes_articles(arts)
 
     except Exception as ex:
       print(repr(ex))

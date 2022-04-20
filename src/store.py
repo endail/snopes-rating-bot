@@ -26,3 +26,11 @@ class store:
   @staticmethod
   def set_last_snopes_url(url: str) -> None:
     db["last_snopes_url"] = url
+
+  @staticmethod
+  def get_last_snopes_articles() -> list:
+    return json.loads(db.get_raw("last_snopes_articles"))
+
+  @staticmethod
+  def set_last_snopes_articles(arts: list) -> None:
+    db.set_raw("last_snopes_articles", json.dumps(list))
